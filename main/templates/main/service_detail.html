@@ -1,0 +1,90 @@
+
+{% block slider %}
+{% endblock slider %}
+
+{% block content %}
+<div class="service_detail_wrapper">
+    <div class="container">
+        <div class="service_detail_content">
+            <h1 class="service_title">{{ service.title }}</h1>
+            <div class="service_image">
+                <img src="{{ service.image.url }}" alt="{{ service.title }}" class="img-fluid">
+            </div>
+            <p class="service_description">{{ service.content }}</p>
+            <h2>Book Details</h2>
+
+            {% if service.book_image %}
+                <div class="book_image">
+                    <img src="{{ service.book_image.url }}" alt="Book Image" class="img-fluid">
+                </div>
+            {% endif %}
+
+            {% if service.book %}
+                <p class="download_link">
+                    <a href="{{ service.book.file.url }}" class="btn btn-primary">Download Book</a>
+                </p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<style>
+
+
+    .service_detail_content {
+        max-width: 800px;
+        max-height: auto;
+        margin: 0 auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .service_title {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .service_image img {
+        width: 202px;
+        height: 371px;
+        border-radius: 8px;
+        object-fit: cover;
+    }
+
+    .service_description {
+        font-size: 1rem;
+        margin: 20px 0;
+        color: #555;
+    }
+
+    .book_image img {
+        width: 100%;
+        max-width: 300px;
+        margin-top: 20px;
+        border-radius: 8px;
+    }
+
+    .download_link {
+        margin-top: 20px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 1rem;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+{% endblock content %}

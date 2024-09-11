@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!-- 
+Template Name: Edu365 Education HTML
+Version: 1.0.0
+Author: Webstrot
+
+-->
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="zxx">
+<!--[endif]-->
+
+<head>
+    <meta charset="utf-8" />
+    <title>Edu365 Education HTML Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="description" content="Education" />
+    <meta name="keywords" content="Education" />
+    <meta name="author" content="" />
+    <meta name="MobileOptimized" content="320" />
+    <!--Template style -->
+    {% include 'components/_style.html' %}
+
+</head>
+
+<body>
+        <div id="preloader">
+        <div id="status">
+            <img src="/static/images/preloader.gif" id="preloader_image" alt="loader">
+        </div>
+    </div>
+    <!-- edu top header wrapper Start -->
+        {% include 'components/header/_top_header.html' %}
+    <!-- edu top header wrapper End -->
+
+    <!-- edu logo header wrapper Start -->
+        {% include 'components/header/_logo_header.html' %}
+    <!-- edu logo header wrapper End -->
+
+    <!-- edu navihation header wrapper Start -->
+        {% include 'components/header/_navihation_header.html' %}
+    <!-- edu navihation header wrapper End -->
+
+        <!-- edu slider wrapper Start -->
+        {% block slider %}
+        {% include 'components/header/_slider.html' %}
+        {% endblock slider %}
+    <!-- edu slider wrapper End -->
+
+    {% block content %}
+    {% endblock content %}
+
+     <!-- footer Wrapper Start -->
+    {% include 'components/_footer.html' %}
+    <!-- footer Wrapper End -->
+
+    {% include 'components/_script.html' %}
+
+</body>
+</html>

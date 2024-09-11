@@ -1,0 +1,216 @@
+{% extends 'page_wrapper.html' %}
+{% block page %}
+
+<!-- inner header wrapper start -->
+<div class="page_title_section float_left">
+    <div class="page_header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-12 col-sm-12">
+                    <h1>Course single</h1>
+                </div>
+                <div class="col-lg-12 col-md-12 col-12 col-sm-12">
+                    <div class="sub_title_section">
+                        <ul class="sub_title">
+                            <li> <a href="/"> Home </a> &nbsp;&nbsp;&nbsp; &gt; &nbsp;&nbsp;</li>
+                            <li>Course single</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- inner header wrapper end -->
+
+<!--blog wrapper start-->
+<div class="blog_wrapper float_left">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Course Detail</title>
+                <style>
+                    .course-thumbnail img {
+                        width: 150px;
+                        height: 220px;
+                        object-fit: cover;
+                    }
+
+                    .course-detail {
+                        display: flex;
+                        align-items: flex-start;
+                        margin-bottom: 20px;
+                    }
+
+                    .course-info {
+                        margin-left: 20px;
+                    }
+
+                    .course-info h1 {
+                        font-size: 24px;
+                        margin-bottom: 10px;
+                    }
+
+                    .course-info p {
+                        margin-bottom: 8px;
+                    }
+                </style>
+
+                <div class="course-detail">
+                    <div class="course-thumbnail">
+                        <img src="{{ course.image.url }}" alt="{{ course.title }}">
+                    </div>
+                    <div class="course-info">
+                        <h1>{{ course.title }}</h1>
+                        <p><strong>Category:</strong> {{ course.category.title }}</p>
+                        <p><strong>Start Date:</strong> {{ course.created_at|date:"F j, Y" }}</p>
+                        <p><strong>Duration:</strong> {{ course.duration }}</p>
+                        <p><strong>Language:</strong> {{ course.get_language_display }}</p>
+                        <p><strong>Price:</strong> ${{ course.price }}</p>
+                        <p><strong>Rating:</strong> {{ course.rating }} stars</p>
+                        <p>{{ course.description }}</p>
+                    </div>
+                </div>
+
+                <div class="tb_btm_link_left">
+                    <ul>
+                        <li><span><i class="fa fa-tag"></i> Tags :</span></li>
+                        {% for tag in course.tags.all %}
+                        <li><a href="#">{{ tag }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <!-- Comments Section -->
+                <div class="comments_wrapper float_left">
+                    <div class="widget_heading">
+                        <h2>comments ({{ course.comments.count }})</h2>
+                    </div>
+                    <div class="row">
+                        {% for comment in course.comments.all %}
+                        <div class="col-lg-12 col-md-12 col-12 col-sm-12">
+                            <div class="comments_Box">
+                                <div class="img_wrapper">
+                                    <img src="{{ comment.user.profile_image.url }}" class="" alt="author_img" />
+                                </div>
+                                <div class="text_wrapper">
+                                    <div class="author_detail">
+                                        <span class="author_name">{{ comment.user.username }} <i class="fa fa-circle"></i></span>
+                                        <span class="publish_date">{{ comment.created_at|date:"F j, Y" }} - <a href="#">Reply</a></span>
+                                    </div>
+                                    <div class="author_content">
+                                        <p>{{ comment.content }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Leave a Comment Section -->
+                <div class="comments_form float_left">
+                    <div class="widget_heading">
+                        <h2>leave a comment</h2>
+                    </div>
+                    <form method="POST" action="/add_comment">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <div class="formsix-pos">
+                                    <div class="form-group i-name">
+                                        <label class="sr-only">Name</label>
+                                        <input type="text" name="name" class="form-control" required="" placeholder="Full Name *">
+                                        <i class="fas fa-user-alt"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="formsix-e">
+                                    <div class="form-group i-email">
+                                        <label class="sr-only">Email</label>
+                                        <input type="email" name="email" class="form-control" required="" placeholder="Email Address *">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <div class="formsix-m">
+                                    <div class="form-group i-message">
+                                        <label class="sr-only">Message</label>
+                                        <textarea class="form-control" name="message" required="" rows="4" placeholder="Message"></textarea>
+                                        <i class="fas fa-comment"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edu_bottom_btn_wrapper edu_btn float_left">
+                            <button type="submit" class="btn">Send Now</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 right_sidebar blog_single_sidebar">
+                <!-- Social Share -->
+                <div class="tb_btm_link_right">
+                    <ul>
+                        <li>share :</li>
+                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                    </ul>
+                </div>
+
+                <!-- Search Widget -->
+                <div class="sidebar_widget float_left">
+                    <div class="widget_heading">
+                        <h2>Search feed</h2>
+                    </div>
+                    <form class="search_form" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search...">
+                        </div>
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+
+                <!-- Latest Posts -->
+                <div class="sidebar_widget float_left">
+                    <div class="widget_heading">
+                        <h2>Latest post</h2>
+                    </div>
+                    <div class="blog_wrapper22 float_left">
+                        <div class="blog_image">
+                            <img src="images/blog1.jpg" class="img-responsive" alt="blog_img1" />
+                        </div>
+                        <div class="blog_text">
+                            <h5><a href="#">How to Become Master In CSS within a Week.</a></h5>
+                            <div class="blog_date">June 28, 2018-19</div>
+                        </div>
+                    </div>
+                    <!-- Repeat similar blocks for other latest posts -->
+                </div>
+
+                <!-- Tag Cloud -->
+                <div class="sidebar_widget float_left">
+                    <div class="widget_heading">
+                        <h2>Tags cloud</h2>
+                    </div>
+                    <div class="sidebar_tag_cloud">
+                        <ul>
+                            {% for tag in tags %}
+                            <li><a href="#">{{ tag }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
